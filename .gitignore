@@ -1,0 +1,13 @@
+.DS_STORE
+.idea
+http-client.env.json
+
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# esbuild directories
+.esbuild

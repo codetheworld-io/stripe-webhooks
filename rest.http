@@ -1,0 +1,7 @@
+### Hello world
+POST {{url}}/hello
+Content-Type: application/json
+
+{
+  "name": "Foo"
+}
