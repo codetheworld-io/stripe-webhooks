@@ -1,6 +1,7 @@
 .DS_STORE
 .idea
 http-client.env.json
+.env
 
 # package directories
 node_modules

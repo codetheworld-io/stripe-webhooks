@@ -1,6 +1,7 @@
 import type { AWS } from '@serverless/typescript';
-import { hello } from '@functions/index';
+import { webhooks } from '@functions/index';
 import { EsbuildOptions } from 'serverless-esbuild/dist/types';
+import * as process from "process";
 
 const serverlessConfiguration: AWS = {
   service: 'stripe-webhooks',
@@ -22,7 +23,9 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       LOG_LEVEL: 'INFO',
       POWERTOOLS_SERVICE_NAME: 'stripe-webhooks',
-      POWERTOOLS_LOGGER_LOG_EVENT: 'true',
+      POWERTOOLS_LOGGER_LOG_EVENT: 'false',
+      STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+      STRIPE_WEBHOOK_SIGNING_SECRET: process.env.STRIPE_WEBHOOK_SIGNING_SECRET,
     },
     layers: [
       'arn:aws:lambda:ap-northeast-1:094274105915:layer:AWSLambdaPowertoolsTypeScript:10',
@@ -30,7 +33,7 @@ const serverlessConfiguration: AWS = {
   },
   // import the function via paths
   functions: {
-    hello,
+    webhooks,
   },
   package: { individually: true },
   custom: {
